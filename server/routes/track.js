@@ -33,8 +33,8 @@ router.get("/", async (req, res) => {
         $group: {
           _id: "$recipient",
           viewCount: { $sum: 1 },
-          firstViewedAt: { $min: "$viewedAt" },
-          lastViewedAt: { $max: "$viewedAt" }
+          firstViewedAt: { $min: "$timestamp" },
+          lastViewedAt: { $max: "$timestamp" }
         }
       },
       {
