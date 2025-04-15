@@ -2,6 +2,7 @@
     "manifest_version": 3,
     "name": "Smart Resume Tracker",
     "version": "1.0",
+    "description": "Track resume views effortlessly with Visly. Know who saw it, when they saw it — no accounts, just answers.",
     "action": {
       "default_popup": "popup.html",
       "default_icon": "icon.jpeg"
