@@ -29,3 +29,11 @@ document.getElementById("generate").addEventListener("click", async () => {
     alert("Error uploading resume");
   }
 });
+
+// Open the dashboard page
+document.getElementById("openDashboard").addEventListener("click", function() {
+    chrome.tabs.create({ url: "http://localhost:5000/dashboard.html" });
+  });
+
+ 
+  

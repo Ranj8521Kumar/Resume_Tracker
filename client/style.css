@@ -1,14 +1,55 @@
 body {
     font-family: sans-serif;
-    padding: 10px;
-  }
-  input {
+    padding: 5px 35px;
+    background-color: black;
+    color: white;
+}
+
+h2{
+    text-align: center;
+}
+
+input {
     width: 100%;
     margin-bottom: 10px;
-  }
-  button {
-    background-color: #007bff;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border-radius: 5px;
+    border: 2px solid rgb(207, 204, 204);
+    background-color: black;
+    cursor: pointer;
+}
+
+button {
+    padding-left: 35px;
+    padding-right: 35px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #66d66a;
     color: white;
-    padding: 5px 10px;
-  }
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#resumeLabel{
+    text-align: center;
+    font-size: 11px;
+}
+
+.hidden {
+    display: none;
+}
   

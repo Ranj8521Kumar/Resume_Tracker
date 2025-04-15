@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resume View Dashboard</title>
+  <style>
+    h1{
+        text-align: center;
+    }
+    body { font-family: sans-serif; padding: 20px; background-color: black; color: white }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { padding: 10px; border: 1px solid #ccc; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>Resume View Dashboard</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Recipient</th>
+        <th>First Viewed</th>
+        <th>Last Viewed</th>
+        <th>View Count</th>
+        <th>Resume</th>
+      </tr>
+    </thead>
+    <tbody id="data-body"></tbody>
+  </table>
+
+  <script>
+    fetch("/track")
+      .then(res => res.json())
+      .then(data => {
+        const body = document.getElementById("data-body");
+        data.forEach(item => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${item.recipient}</td>
+            <td>${new Date(item.firstViewedAt).toLocaleString()}</td>
+            <td>${new Date(item.lastViewedAt).toLocaleString()}</td>
+            <td>${item.viewCount}</td>
+            <td><a href="/track/${item.recipient}" target="_blank">View</a></td>
+          `;
+          body.appendChild(tr);
+        });
+      });
+  </script>
+</body>
+</html>
