@@ -2,12 +2,14 @@ const backendURL = "http://localhost:5000";
 
 document.getElementById("generate").addEventListener("click", async () => {
   const name = document.getElementById("recipient").value.trim();
+  const email = document.getElementById("email").value.trim();
   const file = document.getElementById("resume").files[0];
 
   if (!name || !file) return alert("Enter a name and upload a resume");
 
   const formData = new FormData();
   formData.append("recipient", name);
+  formData.append("email", email);
   formData.append("resume", file);
 
   try {

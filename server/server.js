@@ -6,6 +6,7 @@ const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
 const trackRoutes = require("./routes/track.js");
+const View = require("./models/View");
 
 const app = express();
 app.use(cors());
@@ -24,26 +25,41 @@ if (!fs.existsSync(resumeDir)) {
 const upload = multer({ storage: multer.memoryStorage() });
 
 app.post("/upload", upload.single("resume"), (req, res) => {
-  const { recipient } = req.body;
+  const { recipient, email } = req.body;
   const file = req.file;
 
-  if (!recipient || !file) {
-    return res.status(400).json({ success: false, message: "Missing recipient or file." });
+  if (!recipient || !file || !email) {
+    return res.status(400).json({ success: false, message: "Missing recipient, Email or file." });
   }
 
   const ext = path.extname(file.originalname) || ".pdf";
   const filename = `${recipient}${ext}`;
   const savePath = path.join(resumeDir, filename);
 
-  fs.writeFile(savePath, file.buffer, (err) => {
-    if (err) {
-      console.error("Error saving file:", err);
-      return res.status(500).json({ success: false, message: "File save error" });
-    }
-
-    return res.json({ success: true, filename: filename });
+  // Save email to database
+  const view = new View({
+    recipient,
+    email,
+    timestamp: new Date(),
+    ip: req.ip,
+    userAgent: req.get('User-Agent')
   });
-});
+  
+  view.save()
+    .then(() => {
+      fs.writeFile(savePath, file.buffer, (err) => {
+        if (err) {
+          console.error("Error saving file:", err);
+          return res.status(500).json({ success: false, message: "File save error" });
+        }
+        return res.json({ success: true, filename: filename });
+      });
+    })
+    .catch(err => {
+      console.error("Database error:", err);
+      return res.status(500).json({ success: false, message: "Database error" });
+    });
+  });
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {

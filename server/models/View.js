@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const viewSchema = new mongoose.Schema({
   recipient: String,
+  email: String,
   timestamp: { type: Date, default: Date.now },
   ip: String,
   userAgent: String

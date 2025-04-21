@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const router = express.Router();
 const View = require("../models/View");
+const sendEmail = require("../controller/sendEmail");
 
 // Route to log view and serve the resume
 router.get("/:recipient", async (req, res) => {
@@ -11,6 +12,9 @@ router.get("/:recipient", async (req, res) => {
 
   try {
     await View.create({ recipient, ip, userAgent });
+
+    // Send email notification
+    await sendEmail(recipient, userAgent, ip);
 
     const filePath = path.join(__dirname, "../public/resumes", `${recipient}.pdf`);
     res.sendFile(filePath, (err) => {
