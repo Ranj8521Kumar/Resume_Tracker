@@ -9,7 +9,11 @@ const trackRoutes = require("./routes/track.js");
 const View = require("./models/View");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: '*', // In production, specify your actual domains
+  methods: ['GET', 'POST'],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.static("public"));
 app.use("/track", trackRoutes);
