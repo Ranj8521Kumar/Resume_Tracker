@@ -15,6 +15,12 @@ Smart Resume Tracker is a Chrome extension and web application that allows you t
 - **Dashboard**: View all tracking data in one place
 - **No Recipient Account Required**: Recipients don't need to create accounts to view your resume
 
+## Live Demo
+
+The application is deployed and available at:
+- Backend API: https://my-resume-32bl.onrender.com
+- Dashboard: https://my-resume-32bl.onrender.com/dashboard.html
+
 ## Technologies Used
 
 ### Frontend
@@ -33,9 +39,10 @@ Smart Resume Tracker is a Chrome extension and web application that allows you t
 
 ### DevOps & Tools
 - **dotenv**: For managing environment variables
-- **Brevo (SMTP)**: Email delivery service for notifications
+- **SMTP Email Service**: For sending email notifications
 - **MongoDB Atlas**: Cloud database service for MongoDB
 - **Nodemon**: Utility for automatically restarting the server during development
+- **Render**: Cloud platform for hosting the backend service
 
 ## Project Structure
 
@@ -49,7 +56,6 @@ Resume-Tracker/
 │   └── icon.jpeg            # Extension icon
 │
 ├── server/                  # Backend server
-│   ├── config/              # Configuration files
 │   ├── controller/          # Controller logic
 │   │   └── sendEmail.js     # Email notification controller
 │   ├── models/              # Database models
@@ -59,8 +65,9 @@ Resume-Tracker/
 │   ├── public/              # Static files
 │   │   └── resumes/         # Uploaded resumes
 │   ├── server.js            # Main server file
-│   └── .env                 # Environment variables
+│   └── package.json         # Server dependencies
 │
+├── package.json             # Root dependencies
 └── README.md                # Project documentation
 ```
 
@@ -94,6 +101,8 @@ Resume-Tracker/
    EMAIL_PORT=your_smtp_port
    EMAIL_USER="your_smtp_username"
    EMAIL_PASS="your_smtp_password"
+   SENDER_EMAIL="your_sender_email"
+   PORT=5000
    ```
 
 4. Start the server:
@@ -133,6 +142,17 @@ When someone views your resume:
 2. Click "Go to Dashboard"
 3. View detailed analytics for all your resume links
 
+## Deployment
+
+The backend is deployed on Render.com. To deploy your own instance:
+
+1. Create a new Web Service on Render
+2. Connect your GitHub repository
+3. Set the build command: `npm install && cd server && npm install`
+4. Set the start command: `cd server && node server.js`
+5. Add all environment variables from your `.env` file
+6. Deploy the service
+
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
@@ -140,4 +160,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-
