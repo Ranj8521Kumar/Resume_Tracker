@@ -1,12 +1,14 @@
 {
-    "manifest_version": 3,
-    "name": "Smart Resume Tracker",
-    "version": "1.0",
-    "description": "Track resume views effortlessly with Visly. Know who saw it, when they saw it — no accounts, just answers.",
-    "action": {
-      "default_popup": "popup.html",
-      "default_icon": "icon.jpeg"
-    },
-    "permissions": ["storage", "clipboardWrite"]
-  }
-  
+  "manifest_version": 3,
+  "name": "Smart Resume Tracker",
+  "version": "1.0",
+  "description": "Track resume views effortlessly. Know who saw it, when they saw it — no accounts, just answers.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.jpeg"
+  },
+  "permissions": ["storage", "clipboardWrite"],
+  "host_permissions": [
+    "https://my-resume-32bl.onrender.com/*"
+  ]
+}

@@ -1,4 +1,4 @@
-const backendURL = "http://localhost:5000";
+const backendURL = "https://my-resume-32bl.onrender.com";
 
 document.getElementById("generate").addEventListener("click", async () => {
   const name = document.getElementById("recipient").value.trim();
@@ -32,10 +32,8 @@ document.getElementById("generate").addEventListener("click", async () => {
   }
 });
 
-// Open the dashboard page
+// Update the openDashboard event listener to use your Render URL
 document.getElementById("openDashboard").addEventListener("click", function() {
-    chrome.tabs.create({ url: "http://localhost:5000/dashboard.html" });
-  });
-
- 
-  
+  // Replace with your actual Render deployment URL
+  chrome.tabs.create({ url: "https://my-resume-32bl.onrender.com/dashboard.html" });
+});
