@@ -27,6 +27,8 @@ The application is deployed and available at:
 - **HTML/CSS/JavaScript**: Core web technologies for building the user interface
 - **Chrome Extension API**: For creating the browser extension functionality
 - **Clipboard API**: For automatically copying tracking links
+- **Flutter**: Cross-platform UI toolkit for building the mobile application
+- **Dart**: Programming language used with Flutter
 
 ### Backend
 - **Node.js**: JavaScript runtime environment for server-side code
@@ -43,6 +45,7 @@ The application is deployed and available at:
 - **MongoDB Atlas**: Cloud database service for MongoDB
 - **Nodemon**: Utility for automatically restarting the server during development
 - **Render**: Cloud platform for hosting the backend service
+- **Android Studio**: IDE for Android app development
 
 ## Project Structure
 
@@ -54,6 +57,15 @@ Resume-Tracker/
 │   ├── style.css            # Extension styling
 │   ├── manifest.json        # Extension configuration
 │   └── icon.jpeg            # Extension icon
+│
+├── Mobile App/              # Flutter mobile application
+│   ├── lib/                 # Flutter source code
+│   │   ├── main.dart        # App entry point
+│   │   ├── screens/         # App screens
+│   │   └── services/        # API services
+│   ├── android/             # Android-specific configuration
+│   ├── pubspec.yaml         # Flutter dependencies
+│   └── README.md            # Mobile app documentation
 │
 ├── server/                  # Backend server
 │   ├── controller/          # Controller logic
@@ -118,10 +130,33 @@ Resume-Tracker/
 3. Click "Load unpacked" and select the `client` folder from the project
 4. The extension should now appear in your Chrome toolbar
 
+### Mobile App Setup
+
+1. Make sure you have Flutter installed (see [Flutter installation guide](https://flutter.dev/docs/get-started/install))
+2. Navigate to the Mobile App directory:
+   ```
+   cd "Mobile App"
+   ```
+3. Install dependencies:
+   ```
+   flutter pub get
+   ```
+4. Create a `.env` file from the example:
+   ```
+   cp .env.example .env
+   ```
+5. Run the app:
+   ```
+   flutter run
+   ```
+
+For detailed instructions on building and deploying the mobile app, see the [Mobile App README](Mobile%20App/README.md).
+
 ## Usage
 
 ### Uploading and Tracking a Resume
 
+#### Using Chrome Extension
 1. Click on the Smart Resume Tracker extension icon in your Chrome toolbar
 2. Enter the recipient's name (e.g., company or recruiter name)
 3. Enter your email address to receive notifications
@@ -129,6 +164,15 @@ Resume-Tracker/
 5. Click "Generate Link"
 6. The tracking link will be automatically copied to your clipboard
 7. Share this link with the recipient
+
+#### Using Mobile App
+1. Open the Smart Resume Tracker mobile app
+2. Tap on "Upload Resume" on the home screen
+3. Enter the recipient's name and your email address
+4. Select your resume PDF file
+5. Tap "Generate Tracking Link"
+6. Use the "Copy Link" button to copy the link or "Open Link" to preview it
+7. Share the link with the recipient
 
 ### Receiving Notifications
 
@@ -138,11 +182,19 @@ When someone views your resume:
 
 ### Viewing Analytics
 
+#### Using Chrome Extension
 1. Click on the Smart Resume Tracker extension icon
 2. Click "Go to Dashboard"
 3. View detailed analytics for all your resume links
 
+#### Using Mobile App
+1. Open the Smart Resume Tracker mobile app
+2. Tap on "View Dashboard" on the home screen
+3. View detailed analytics including view counts and timestamps for all your resume links
+
 ## Deployment
+
+### Backend Deployment
 
 The backend is deployed on Render.com. To deploy your own instance:
 
@@ -152,6 +204,39 @@ The backend is deployed on Render.com. To deploy your own instance:
 4. Set the start command: `cd server && node server.js`
 5. Add all environment variables from your `.env` file
 6. Deploy the service
+
+### Chrome Extension Deployment
+
+To publish the Chrome extension to the Chrome Web Store:
+
+1. Create a ZIP file of the `client` directory
+2. Create a developer account on the [Chrome Web Store](https://chrome.google.com/webstore/devconsole/)
+3. Pay the one-time developer fee
+4. Create a new item and upload the ZIP file
+5. Fill in the store listing information
+6. Submit for review
+
+### Mobile App Deployment
+
+#### Android
+
+1. Build a release APK or App Bundle:
+   ```
+   cd "Mobile App"
+   flutter build apk --release
+   # OR
+   flutter build appbundle --release
+   ```
+
+2. Publish to Google Play Store:
+   - Create a developer account on the [Google Play Console](https://play.google.com/console/signup)
+   - Create a new application
+   - Upload your signed APK or AAB file
+   - Fill in the store listing details
+   - Set up pricing and distribution
+   - Submit for review
+
+For detailed instructions on mobile app deployment, see the [Mobile App README](Mobile%20App/README.md).
 
 ## License
 
