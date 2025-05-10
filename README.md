@@ -143,7 +143,6 @@ Resume-Tracker/
    ```
 4. Create a `.env` file from the example:
    ```
-   cp .env.example .env
    ```
 5. Run the app:
    ```
